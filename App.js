@@ -1,4 +1,6 @@
 import React from 'react';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -12,6 +14,8 @@ import Home from './src/telas/home';
 import Sobre from './src/telas/sobre';
 import Catalogo from './src/telas/Catalogo/catalogo';
 import Contato from './src/telas/contato';
+import Produtos from './src/telas/Produtos/index';
+import ListaDesejos from './src/telas/ListaDesejos/index';
 
 function MenuCesta() {
   return (
@@ -51,6 +55,14 @@ function TabsMenu() {
             iconName = focused
               ? 'chatbubble'
               : 'chatbubble-outline';
+          } else if (route.name === 'Produtos') {
+            iconName = focused
+              ? 'list'
+              : 'list-outline';
+          } else if (route.name === 'Lista Desejos') {
+            iconName = focused
+              ? 'heart'
+              : 'heart-outline';
           }
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -64,6 +76,8 @@ function TabsMenu() {
       <Tab.Screen name="Sobre" component={Sobre} />
       <Tab.Screen name="Catálogo" component={Catalogo} />
       <Tab.Screen name="Contato" component={Contato} />
+      <Tab.Screen name="Produtos" component={Produtos} />
+      <Tab.Screen name="Lista Desejos" component={ListaDesejos} />
     </Tab.Navigator>
 
   );

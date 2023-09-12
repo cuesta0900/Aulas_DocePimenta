@@ -3,11 +3,14 @@ import { Image, ScrollView, StyleSheet, Dimensions } from "react-native";
 import Texto from "../componentes/Texto";
 import Header from "../componentes/Header";
 import loja from "../../assets/loja.jpg" //Mudar imagem
+import {Video, ResizeMode} from 'expo-av';
 //import imgSacolao from "../../assets/imagem_sacolao.jpg"
 
 const width = Dimensions.get('screen').width;
 
 export default function Sacolao(){
+    const video = React.useRef(null);
+    const [status, setStatus] = React.useState({}); 
     return <ScrollView>
         <Header />
         <Texto style={estilos.slogan}>
@@ -20,7 +23,13 @@ export default function Sacolao(){
            Somos uma loja de roupa localizada em Pernambuco, 
            buscando sempre visar o bem estar de nossos clientes.
         </Texto>
-        <Image source={loja} style={estilos.loja}></Image>
+        <Video ref={video}
+            style={estilos.loja}
+            source={require('../../assets/videos/video.mp4')}
+            useNativeControls
+            resizeMode={ResizeMode.CONTAIN}
+            isLooping
+            onPlaybackStatusUpdate={status => setStatus(() => status)}/>
         <Texto style={estilos.texto}>
         📍Endereço: Rua Pedro Lúcio Albuquerque, 134, Lajedo, Pernambuco, CEP 55385-000 
         </Texto>
@@ -47,7 +56,6 @@ const estilos = StyleSheet.create({
         margin: 10,
         textAlign: "center",
         fontWeight: "bold"
-        
     }
 
 })

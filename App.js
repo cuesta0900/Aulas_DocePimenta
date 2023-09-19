@@ -55,7 +55,7 @@ function TabsMenu() {
             iconName = focused
               ? 'chatbubble'
               : 'chatbubble-outline';
-          } else if (route.name === 'Produtos') {
+          } else if (route.name === 'Destaques') {
             iconName = focused
               ? 'list'
               : 'list-outline';
@@ -76,7 +76,7 @@ function TabsMenu() {
       <Tab.Screen name="Sobre" component={Sobre} />
       <Tab.Screen name="Catálogo" component={Catalogo} />
       <Tab.Screen name="Contato" component={Contato} />
-      <Tab.Screen name="Produtos" component={Produtos} />
+      <Tab.Screen name="Destaques" component={Produtos} />
       <Tab.Screen name="Lista Desejos" component={ListaDesejos} />
     </Tab.Navigator>
 

@@ -41,6 +41,15 @@ export default StyleSheet.create({
         marginHorizontal: 24,
         borderBottomWidth: 1,
         borderBottomColor: 'purple',
+    },
+    text:{
+        marginTop: 10,
+        fontSize: 20,
+        marginHorizontal: '1%'
+    },
+    textContainer:{
+        flexDirection: 'row',
+        marginVertical: '5%',
+        marginHorizontal: '5%'
     }
-    
 });

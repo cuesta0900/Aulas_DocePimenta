@@ -1,51 +1,42 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, TouchableOpacity } from "react-native";
-
+import React, {useState} from "react";
 import Texto from "../../componentes/Texto";
 import CampoInteiro from "../../componentes/Campointeiro";
 import estilos from "../Produtos/estilos";
+import { Button, View, TouchableOpacity, Image } from "react-native";
 
-export default function Item({ nome, descricao, preco }) {
+export default function Item({ nome, descricao, preco, imagem }) {
 
-    const [quantidade, setQuantidade] = useState(1);
-    const [total, setTotal] = useState(preco);
     const [expandir, setExpandir] = useState(false);
 
-    const calculaTotal = (quantidade) => {
-        setTotal(quantidade * preco);
-    }
-
-    const atualizaQtdeTotal = (novaQtde) => {
-        setQuantidade(novaQtde);
-        calculaTotal(novaQtde);
-    }
-    //Metodo para o abra e fecha
+    //Método para o abre e fecha
     const inverteExpandir = () => {
         setExpandir(!expandir);
-
-        //Retorna a quantidade para o estado padrão
-        atualizaQtdeTotal(1);
-    }
+    };
 
     return <>
-        <TouchableOpacity style={estilos.produtos}>
+        <TouchableOpacity style={estilos.produtos} onPress={inverteExpandir}>
             <Texto style={estilos.nome}>{nome}</Texto>
-            <Texto style={estilos.descricao}>{descricao}</Texto>
-            <Texto style={estilos.preco}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</Texto>
+            { expandir && <Texto style={estilos.descricao}>{descricao}</Texto>}
+            
         </TouchableOpacity>
-        { expandir && 
-            <View style={estilos.listadesejos}>
+        { expandir &&
+            <View style={estilos.listaDesejos}>
                 <View style={estilos.posicao}>
-                    <Texto>Quantidade</Texto>
-                    <CampoInteiro valor={quantidade} acao={atualizaQtdeTotal} />
+                    <Texto>Preço:</Texto>
+                    <Texto style={estilos.preco}>
+                {Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'})
+                .format(preco)}
+            </Texto>
                 </View>
-                <View style={estilos.posicao}>
-                    <Texto>Total</Texto>
-                    <Texto>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</Texto>
-                </View>
-                <Button title="Adicionar" />
             </View>
         }
-        <View style={estilos.divisor} />
+        {
+            expandir &&
+            <View style={estilos.listaDesejos}>
+                <Image source={imagem}/>
+                <Button title="Adicionar"/>
+            </View>
+        }
+        <View style={estilos.divisor}/>
     </>
 }

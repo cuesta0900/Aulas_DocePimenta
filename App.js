@@ -31,7 +31,7 @@ const Tab = createBottomTabNavigator();
 function TabsMenu() {
   return (
     <Tab.Navigator
-      style={{ backgroundColor: '#211F20' }}
+      style={{ backgroundColor: '#211F20'}}
       screenOptions={
         ({ route }) => ({
         headerShown: false,
@@ -51,10 +51,6 @@ function TabsMenu() {
             iconName = focused
               ? 'chatbubble-ellipses'
               : 'chatbubble-ellipses-outline';
-          } else if (route.name === 'Contato') {
-            iconName = focused
-              ? 'chatbubble'
-              : 'chatbubble-outline';
           } else if (route.name === 'Destaques') {
             iconName = focused
               ? 'list'
@@ -63,7 +59,11 @@ function TabsMenu() {
             iconName = focused
               ? 'heart'
               : 'heart-outline';
-          }
+          } else if (route.name === 'Contato') {
+            iconName = focused
+              ? 'chatbubble'
+              : 'chatbubble-outline';
+          } 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -75,9 +75,10 @@ function TabsMenu() {
       <Tab.Screen name="Home" component={MenuCesta}  />
       <Tab.Screen name="Sobre" component={Sobre} />
       <Tab.Screen name="Catálogo" component={Catalogo} />
-      <Tab.Screen name="Contato" component={Contato} />
       <Tab.Screen name="Destaques" component={Produtos} />
       <Tab.Screen name="Lista Desejos" component={ListaDesejos} />
+      <Tab.Screen name="Contato" component={Contato} />
+
     </Tab.Navigator>
 
   );

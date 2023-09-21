@@ -4,38 +4,38 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     
     nome: {
-        color: 'orange',
-        fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 20,
+        marginBottom: 5,
+        marginTop:5,
+    },
+    preco: {
+        color: '#ff6f9c',
+        fontSize: 22,
+        textAlign: 'right',
+    },
+    produtos: {
+        padding: 24,
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+    },
+    conteudo: {
+        paddingHorizontal: 24,
+        paddingBottom: 24,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 230,
+    },
+    imagem:{
+        height: 200,
+        width: 150,
     },
     descricao: {
         color: 'black',
         fontWeight: 'none',
         fontSize: 16,
-        marginRight: 8,
-    },
-    preco: {
-        color: 'red',
-        fontWeight: 'bold',
-        fontSize: 24,
-        textAlign: 'right',
-    },
-    produtos: {
-        padding: 24,
-    },
-    listadesejos: {
-        paddingHorizontal: 24,
-        paddingBottom: 24,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignContent: 'center',
-        flexWrap: 'wrap',
-    },
-    posicao: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-        flexWrap: 'wrap',
+        textAlign: 'justify',
+        marginLeft: 15,
     },
     divisor: {
         marginHorizontal: 24,
@@ -51,5 +51,5 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginVertical: '5%',
         marginHorizontal: '5%'
-    }
+    },
 });

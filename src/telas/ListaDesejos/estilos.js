@@ -1,46 +1,82 @@
-import React from "react";
+
 import { StyleSheet } from "react-native";
 
+ 
+
 export default StyleSheet.create({
-    
+
     nome: {
-        color: 'orange',
-        fontWeight: 'bold',
-        fontSize: 30
+
+        color: '#ff6f9c',
+
+        fontWeight: "bold",
+
+        fontSize: 28
+
     },
+
     descricao: {
+
         color: 'black',
-        fontWeight: 'none',
-        fontSize: 16,
-        marginRight: 8,
+
+        fontSize: 18,
+
     },
+
     preco: {
-        color: 'red',
-        fontWeight: 'bold',
+
+        color: '#ff6f9c',
+
         fontSize: 24,
+
+        fontWeight: 'bold',
+
         textAlign: 'right',
+
     },
+
     produtos: {
-        padding: 24,
+
+        padding: 20
+
     },
-    listadesejos: {
+
+    listaDesejos: {
+
         paddingHorizontal: 24,
+
         paddingBottom: 24,
-        flexDirection: 'row',
+
+        flexDirection: "row",
+
         justifyContent: 'space-between',
-        alignContent: 'center',
-        flexWrap: 'wrap',
+
+        alignItems: "flex-start",
+
+        flexWrap: 'wrap'
+
     },
-    posicao: {
+
+    desejos: {
+
         flexDirection: 'row',
+
         alignItems: 'center',
+
         marginBottom: 10,
-        flexWrap: 'wrap',
+
+        flexWrap: "wrap"
+
     },
+
     divisor: {
+
         marginHorizontal: 24,
+
         borderBottomWidth: 1,
-        borderBottomColor: 'purple',
+
+        borderBottomColor: 'black'
+
     }
-    
+
 });

@@ -17,7 +17,7 @@ export default function Item({ nome, descricao, preco, imagem }) {
     const Adicionar = (name, decr, prc, img) => {
         const dicionario = {nome: name, descricao: decr, preco: prc, imagem: img};
         enviaLista.push(dicionario);
-        alert(enviaLista);
+        alert(JSON.stringify(enviaLista, null, 2)); // Converte o array para uma string formatada
     }
 
     function WishList(){

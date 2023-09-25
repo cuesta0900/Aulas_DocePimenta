@@ -102,3 +102,4 @@ export default function Produtos() {
         />
     </SafeAreaView>
 }
+

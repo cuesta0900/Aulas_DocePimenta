@@ -20,6 +20,7 @@ export default function Item({ nome, descricao, preco, quantidade: qtdeInicial }
         calculaTotal(novaQtde);
     }
 
+
     return <>
         <View style={estilos.produtos}>
             <Texto style={estilos.nome}>{nome}</Texto>

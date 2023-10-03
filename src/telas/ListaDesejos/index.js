@@ -1,13 +1,13 @@
 import React from "react";
-
 import Item from "./Item.js";
-
 import StatusLista from '../../componentes/StatusListaDesejos';
-
 import { FlatList, SafeAreaView } from "react-native";
+import { useEffect, useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const produtos = [
+
+/*const produtos = [
 
     {
 
@@ -37,7 +37,7 @@ const produtos = [
 
     }
 
-];
+];*/
 
 
 

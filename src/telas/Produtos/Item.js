@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Texto from "../../componentes/Texto";
 import estilos from "../Produtos/estilos";
 import { Button, View, TouchableOpacity, Image, FlatList } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Item({ nome, descricao, preco, imagem }) {
+export default function Item({id, nome, descricao, preco, imagem }) {
 
     const [expandir, setExpandir] = useState(false);
 
@@ -12,24 +13,39 @@ export default function Item({ nome, descricao, preco, imagem }) {
         setExpandir(!expandir);
     };
 
-    const enviaLista =  [];
+    async function addListaDesejos(id, nome, descricao, preco, imagem){
+        const addProduto = [{
+            id:id,
+            nome: nome,
+            descricao: descricao,
+            preco: preco,
+            imagem: imagem,
+        }]
+        //ASYNCSTORAGE = popular: setItem / recuperar: get Item
+        //Verifica se a lista de desejos já contém itens
+        const listaDesejosSalva = await AsyncStorage.getItem('ListaDesejos');
+        if(listaDesejosSalva !== null){
+            //A lista já tem itens
+            const listaDesejos = JSON.parse(listaDesejosSalva);
+            
+            //Adiciona o novo produto na lista de desejos
+            listaDesejos.push({id: id, nome: nome, descricao: descricao, preco: preco, imagem: imagem});
 
-    const Adicionar = (name, decr, prc, img) => {
-        const dicionario = {nome: name, descricao: decr, preco: prc, imagem: img};
-        enviaLista.push(dicionario);
-        alert(JSON.stringify(enviaLista, null, 2)); // Converte o array para uma string formatada
-    }
 
-    function WishList(){
-        const [enviaLista, setenviaLista] = useState([]);
+            //Converte a lista em string
+            const listaDesejosAtualizada = JSON.stringify(listaDesejos);
+            await AsyncStorage.setItem('ListaDesejos', listaDesejosAtualizada);
+            
+            console.log(listaDesejos);
+        }else{
+            //A lista está vazia. Insere o primeiro item
+            const listaDesejosAtualizada = JSON.stringify(addProduto);
+            
 
-        return(
-            <FlatList
-                data={enviaLista}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => <Item item={item} />}
-                />
-        );
+            //Insere o item no AsyncStorage
+            await AsyncStorage.setItem('ListaDesejos', listaDesejosAtualizada);
+            console.log("Inserir o item na lista");
+        }
     }
 
     return <>
@@ -48,7 +64,7 @@ export default function Item({ nome, descricao, preco, imagem }) {
                 <Image style={estilos.imagem} source={imagem} />
                 <Texto style={estilos.descricao}>{descricao}</Texto>
             </View><View style={estilos.conteudo}>
-                    <Button color={'purple'} onPress={ () =>  Adicionar(nome, descricao, preco, imagem) }  title="Adicionar aos Favoritos" />
+                    <Button color={'purple'} onPress={ () => addListaDesejos(id, nome, descricao,preco,  imagem) }  title="Adicionar aos Favoritos" />
                 </View></>
         }
         <View style={estilos.divisor} />

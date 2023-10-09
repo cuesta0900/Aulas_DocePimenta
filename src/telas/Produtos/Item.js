@@ -13,13 +13,12 @@ export default function Item({id, nome, descricao, preco, imagem }) {
         setExpandir(!expandir);
     };
 
-    async function addListaDesejos(id, nome, descricao, preco, imagem){
+    async function addListaDesejos(id, nome, descricao, preco){
         const addProduto = [{
             id:id,
             nome: nome,
             descricao: descricao,
             preco: preco,
-            imagem: imagem,
         }]
         //ASYNCSTORAGE = popular: setItem / recuperar: get Item
         //Verifica se a lista de desejos já contém itens
@@ -29,7 +28,7 @@ export default function Item({id, nome, descricao, preco, imagem }) {
             const listaDesejos = JSON.parse(listaDesejosSalva);
             
             //Adiciona o novo produto na lista de desejos
-            listaDesejos.push({id: id, nome: nome, descricao: descricao, preco: preco, imagem: imagem});
+            listaDesejos.push({id: id, nome: nome, descricao: descricao, preco: preco});
 
 
             //Converte a lista em string
@@ -64,7 +63,7 @@ export default function Item({id, nome, descricao, preco, imagem }) {
                 <Image style={estilos.imagem} source={imagem} />
                 <Texto style={estilos.descricao}>{descricao}</Texto>
             </View><View style={estilos.conteudo}>
-                    <Button color={'purple'} onPress={ () => addListaDesejos(id, nome, descricao,preco,  imagem) }  title="Adicionar aos Favoritos" />
+                    <Button color={'purple'} onPress={ () => addListaDesejos(id, nome, descricao,preco) }  title="Adicionar aos Favoritos" />
                 </View></>
         }
         <View style={estilos.divisor} />

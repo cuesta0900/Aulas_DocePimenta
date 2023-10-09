@@ -2,18 +2,15 @@ import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Texto from "./Texto.js";
 
- 
 
-export default function Botao({children, style}) {
 
- 
-
-    return  <TouchableOpacity style={[styles.button, style]}>
-<Texto style={styles.buttonText}>{children}</Texto>
-</TouchableOpacity>;
+export default function Botao({ children, style, onPress }) {
+    return <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+        <Texto style={styles.buttonText}>{children}</Texto>
+    </TouchableOpacity>;
 }
 
- 
+
 
 const styles = StyleSheet.create({
     button: {

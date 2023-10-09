@@ -6,46 +6,26 @@ import { useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-
-/*const produtos = [
-
-    {
-
-        id: 1,
-
-        nome: 'Cesta Inverno',
-
-        preco: 79.90,
-
-        descricao: 'Cesta de frutas típicas do inverno',
-
-        qtde: 1
-
-    },
-
-    {
-
-        id: 2,
-
-        nome: 'Cesta Verão',
-
-        preco: 89.90,
-
-        descricao: 'Cesta de frutas típicas do verão',
-
-        qtde: 2
-
-    }
-
-];*/
-
-
-
 export default function ListaDesejos() {
 
+    //Variável de estado
+    const [lista, setLista] = useState([]);
 
+    //Carrega os dados armazenados no AsyncStorage
+    const carregaLista = async () => {
+        const storedList = await AsyncStorage.getItem('ListaDesejos');
+        if (storedList !== null) {
+            setLista(JSON.parse(storedList));
+        }
+    }
 
-    const total = produtos.reduce((soma, { preco, qtde }) => soma + (preco * qtde), 0);
+    //Carrega a lista de desejos quando monta o componente
+    useEffect(() => {
+        carregaLista();
+    }, [])
+
+    //Faz o cálculo do valor total
+    const total = lista.reduce((soma, { preco, qtde }) => soma + (preco * qtde), 0);
 
 
 
@@ -55,7 +35,7 @@ export default function ListaDesejos() {
 
         <FlatList
 
-            data={produtos}
+            data={lista}
 
             renderItem={({ item }) => (<Item {...item} />)}
 

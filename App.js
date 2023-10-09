@@ -76,7 +76,7 @@ function TabsMenu() {
       <Tab.Screen name="Sobre" component={Sobre} />
       <Tab.Screen name="Catálogo" component={Catalogo} />
       <Tab.Screen name="Destaques" component={Produtos} />
-      <Tab.Screen name="Lista Desejos" component={ListaDesejos} />
+      <Tab.Screen name="Lista Desejos" component={ListaDesejos} options={{unmountOnBlur: true}}/>
       <Tab.Screen name="Contato" component={Contato} />
 
     </Tab.Navigator>

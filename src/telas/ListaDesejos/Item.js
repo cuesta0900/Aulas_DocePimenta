@@ -9,15 +9,15 @@ import estilos from "./estilos"
 
 import CampoInteiro from "../../componentes/Campointeiro";
 
- 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
  
 
-export default function Item({ nome, descricao, preco, quantidade: qtdeInicial }) {
+export default function Item({id, nome, descricao, preco }) {
 
  
 
-    const [quantidade, setQuantidade] = useState(qtdeInicial);
+    /*const [quantidade, setQuantidade] = useState(qtdeInicial);
 
     const [total, setTotal] = useState(preco * qtdeInicial);
 
@@ -39,11 +39,35 @@ export default function Item({ nome, descricao, preco, quantidade: qtdeInicial }
 
         calculaTotal(novaQtde);
 
+    }*/
+
+ 
+    // Função para remover um item da lista de desejos no AsyncStorage usando o ID
+async function removerItemPeloId(idParaRemover) {
+    try {
+      // Recupere a lista de desejos do AsyncStorage
+      let listaDesejos = JSON.parse(await AsyncStorage.getItem('ListaDesejos')) || [];
+  
+      // Encontre o índice do item na lista com base no ID
+      const index = listaDesejos.findIndex(item => item.id === idParaRemover);
+  
+      // Se o item foi encontrado, remova-o da lista de desejos
+      if (index !== -1) {
+        listaDesejos.splice(index, 1);
+  
+        // Salve a lista atualizada de volta no AsyncStorage
+        await AsyncStorage.setItem('ListaDesejos', JSON.stringify(listaDesejos));
+  
+        console.log(`Item com ID ${idParaRemover} removido da lista de desejos.`);
+      } else {
+        console.log(`Nenhum item com ID ${idParaRemover} encontrado na lista de desejos.`);
+      }
+    } catch (erro) {
+      console.error('Erro ao remover item da lista de desejos:', erro.message);
     }
-
- 
-
- 
+  }
+  
+  
 
     return <>
 
@@ -59,29 +83,11 @@ export default function Item({ nome, descricao, preco, quantidade: qtdeInicial }
 
         <View style={estilos.listadesejos}>
 
-            <View style={estilos.posicao}>
-
-                <Texto>Quantidade</Texto>
-
-                <CampoInteiro valor={quantidade} acao={atualizaQtdeTotal} />
-
-            </View>
-
-            <View style={estilos.posicao}>
-
-                <Texto>Total</Texto>
-
-                <Texto>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}</Texto>
-
-            </View>
-
-            <Button title="Remover" />
+        <Button onPress={ () => removerItemPeloId(id)} title="Remover"/>
 
         </View>
 
- 
-
-        <View style={estilos.divisor} />
+        <View style={estilos.divisor} />     
 
     </>
 

@@ -13,12 +13,13 @@ export default function Item({id, nome, descricao, preco, imagem }) {
         setExpandir(!expandir);
     };
 
-    async function addListaDesejos(id, nome, descricao, preco){
+    async function addListaDesejos(id, nome, descricao, preco, imagem){
         const addProduto = [{
             id:id,
             nome: nome,
             descricao: descricao,
             preco: preco,
+            imagem: imagem
         }]
         //ASYNCSTORAGE = popular: setItem / recuperar: get Item
         //Verifica se a lista de desejos já contém itens
@@ -28,7 +29,7 @@ export default function Item({id, nome, descricao, preco, imagem }) {
             const listaDesejos = JSON.parse(listaDesejosSalva);
             
             //Adiciona o novo produto na lista de desejos
-            listaDesejos.push({id: id, nome: nome, descricao: descricao, preco: preco});
+            listaDesejos.push({id: id, nome: nome, descricao: descricao, preco: preco, imagem:imagem});
 
 
             //Converte a lista em string

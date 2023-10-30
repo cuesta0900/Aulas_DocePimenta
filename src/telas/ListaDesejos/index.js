@@ -1,48 +1,33 @@
-import React from "react";
-import Item from "./Item.js";
+import React, {useEffect, useState} from "react";
 import StatusLista from '../../componentes/StatusListaDesejos';
-import { FlatList, SafeAreaView } from "react-native";
-import { useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { FlatList, SafeAreaView, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Item from "./Item.js";
 
 export default function ListaDesejos() {
 
-    //Variável de estado
-    const [lista, setLista] = useState([]);
-
-    //Carrega os dados armazenados no AsyncStorage
-    const carregaLista = async () => {
-        const storedList = await AsyncStorage.getItem('ListaDesejos');
-        if (storedList !== null) {
-            setLista(JSON.parse(storedList));
+    const [data, setData] = useState([]);
+    // const [total, setTotal] = useState(0);
+    
+    const getData = async () => {
+        const ListaDesejos = await AsyncStorage.getItem('ListaDesejos');
+        if (ListaDesejos !== null) {
+            setData(JSON.parse(ListaDesejos));
         }
-    }
-
-    //Carrega a lista de desejos quando monta o componente
+    };
+    
     useEffect(() => {
-        carregaLista();
+        getData();
     }, [])
-
-    //Faz o cálculo do valor total
-    const total = lista.reduce((soma, { preco, qtde }) => soma + (preco * qtde), 0);
-
-
-
-    return <SafeAreaView>
-
-        <StatusLista total={total} />
-
+    
+    return <View>
+        <SafeAreaView>
+            <StatusLista/>
+        </SafeAreaView>
         <FlatList
-
-            data={lista}
-
-            renderItem={({ item }) => (<Item {...item} />)}
-
-            keyExtractor={({ id }) => (String(id))}
-
+            data={data}
+            renderItem={({item}) => (<Item {...item}/>)}
+            keyExtractor={({id}) => (String(id))}
         />
-
-    </SafeAreaView>
-
+    </View>
 }

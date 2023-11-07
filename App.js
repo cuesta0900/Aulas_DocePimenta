@@ -17,6 +17,7 @@ import Contato from './src/telas/contato';
 import Produtos from './src/telas/Produtos/index';
 import ListaDesejos from './src/telas/ListaDesejos/index';
 import Camera from './src/telas/camera';
+import API from './src/telas/apis/api';
 
 function MenuCesta() {
   return (
@@ -64,7 +65,7 @@ function TabsMenu() {
             iconName = focused
               ? 'chatbubble'
               : 'chatbubble-outline';
-          } else if (route.name === 'Camera') {
+          } else if (route.name === 'API') {
             iconName = focused
               ? 'chatbubble'
               : 'chatbubble-outline';
@@ -83,7 +84,7 @@ function TabsMenu() {
       <Tab.Screen name="Destaques" component={Produtos} />
       <Tab.Screen name="Lista Desejos" component={ListaDesejos} options={{unmountOnBlur: true}}/>
       <Tab.Screen name="Contato" component={Contato} />
-      <Tab.Screen name="Camera" component={Camera} />
+      <Tab.Screen name="API" component={API} />
 
     </Tab.Navigator>
 

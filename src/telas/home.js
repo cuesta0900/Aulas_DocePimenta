@@ -4,9 +4,12 @@ import { Audio } from "expo-av";
 
 import Carrossel from '../componentes/Carrossel.js'
 import Header from '../componentes/Header.js';
+import API from "./apis/api.js";
+
 
 import cupom from "../../assets/cupom.jpg";
 import promo from "../../assets/promo.jpg";
+
 
 export default function Home() {
     const [audioStatus, setAudioStatus] = useState(false);
@@ -42,6 +45,7 @@ export default function Home() {
                     <Image style={estilos.imagem} source={cupom} />
                     <Image style={estilos.imagem} source={promo} />
                 </View>
+                <API></API>
             </ScrollView>
         </>
     );

@@ -47,10 +47,8 @@ export default StyleSheet.create({
         borderBottomColor: 'black'
     },
     descricao: {
-
         color: 'black',
-
-        fontSize: 18,
+        fontSize: 15,
 
     },
 });
